@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import dateFormat from "dateformat";
 
 class DishDetail extends Component{
     renderDish(dish) {
         if (dish != null)
             return(
-                <div className="col-12 col-md-5 m-1">
+                <Card className="col-12 col-md-5 m-1">
                     <CardImg top src={dish.image} alt={dish.name} />
                     <CardBody>
                       <CardTitle>{dish.name}</CardTitle>
                       <CardText>{dish.description}</CardText>
                     </CardBody>
-                </div>
+                </Card>
             );
         else
             return(
@@ -28,7 +29,7 @@ class DishDetail extends Component{
                 <ul key={comment.comment} className ="list-unstyled">
                     <li>
                         <p>{comment.comment}</p>
-                        <p>{comment.author},{comment.date}</p>
+                        <p>{comment.author}, {dateFormat(comment.date,"mmmm d,yyyy")}</p>
                     </li>
                 </ul>
                 )
