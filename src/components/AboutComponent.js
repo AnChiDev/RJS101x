@@ -6,7 +6,16 @@ function About(props) {
 
     const leaders = props.leaders.map((leader) => {
         return (
-            <p>Leader {leader.name}</p>
+            <Media tag="li" className="row mb-5">
+            <Media left className="col-2">
+                <Media object src={leader.image} alt={leader.name} />                            
+            </Media>
+            <Media body className="col-10">
+                <Media heading>{leader.name}</Media>
+                <Media title className="mb-2">{leader.designation}</Media>
+                <Media>{leader.description}</Media>
+            </Media>
+        </Media>
         );
     });
 
