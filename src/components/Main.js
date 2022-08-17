@@ -18,8 +18,10 @@ class Main extends Component {
         staffs: STAFFS,
         departments: DEPARTMENTS
     })
-}
-
+  }
+    handleSubmit = (newStaff) => {
+      this.setState({staffs: [...this.state.staffs, newStaff]});
+  }
   render() {
     const HomePage = () => {
       return(
@@ -31,17 +33,13 @@ class Main extends Component {
         <StaffInfo staff={this.state.staffs.filter((staff) => staff.id === parseInt(match.params.staffId,10))[0]} />
       )
     }
-   handleSubmit = (newStaff) => {
-    this.setState({staffs: [...this.state.staffs, newStaff]});
-}
-
     return (
       <div>
         <Header/>
             <Switch>
               <Route path='/home' component={HomePage} />
-              <Route exact path='/StaffList' component={() => <StaffList staffs={this.state.staffs} handleSubmit={this.handleSubmit}/>} />}/>
-                                                                
+              <Route exact path='/StaffList' component={() => <StaffList staffs={this.state.staffs} 
+                                                                        handleSubmit={this.handleSubmit}/>}/>
               <Route path='/StaffList/:staffId' component ={StaffWithID}/> 
               <Route exact path='/Department' component={() => <Department departments={this.state.departments} />} />      
               <Route exact path='/Salary' component={() => <Salary staffs={this.state.staffs} />} />          
