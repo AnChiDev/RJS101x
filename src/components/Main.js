@@ -17,10 +17,12 @@ class Main extends Component {
     this.state = ({
         staffs: STAFFS,
         departments: DEPARTMENTS
+         
     })
+  this.handleSubmit=this.handleSubmit.bind(this);
   }
     handleSubmit = (newStaff) => {
-      this.setState({staffs: [...this.state.staffs, newStaff]});
+      this.setState({staffs: [...this.state.staffs, newStaff]}); 
   }
   render() {
     const HomePage = () => {
@@ -43,7 +45,7 @@ class Main extends Component {
               <Route path='/StaffList/:staffId' component ={StaffWithID}/> 
               <Route exact path='/Department' component={() => <Department departments={this.state.departments} />} />      
               <Route exact path='/Salary' component={() => <Salary staffs={this.state.staffs} />} />          
-              <Redirect to="/home" />
+              <Redirect to='/home'/>
           </Switch>
           <Footer/>
 

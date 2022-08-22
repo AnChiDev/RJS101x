@@ -1,20 +1,23 @@
 import React, { Component } from "react";
-import {Input, Modal, ModalHeader, ModalBody, Label, FormGroup,Button, Row, Col, Form, FormFeedback} from 'reactstrap';
+import {Input, Modal, ModalHeader, ModalBody, Label, FormGroup,Button, Form, FormFeedback} from 'reactstrap';
 import { DEPARTMENTS } from '../shared/staffs';
+
 
 class AddStaff extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
+      id:"",
       name: "",
       doB: "",
-      salaryScale: "1",
+      salaryScale: "",
       startDate: "",
       department: "",
       overTime: "",
       annualLeave: "",
       salary: "",
-      image: "/assets/images/alberto.png",
+      image: '/assets/images/alberto.png',
       isModalOpen: false,
       touched:{
         name: false,
@@ -77,6 +80,7 @@ handleSubmit(e) {
             this.toggleModal();
             this.props.handleSubmit(newStaff);
             localStorage.setItem('store', JSON.stringify(newStaff));
+            console.log(newStaff)
         }
     }
 
@@ -107,7 +111,7 @@ return errors;
     const errors = this.validate(this.state.name, this.state.doB, this.state.startDate);
     return (
       <div>
-         <Button color="primary"type="submit" onClick ={this.toggleModal} > Thêm nhân viên mới </Button>
+         <Button color="primary"type="submit" onClick ={this.handleAddStaff} > Thêm nhân viên mới </Button>
           <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
           <ModalHeader toggle={this.toggleModal}>
             Thêm nhân viên mới
@@ -159,14 +163,13 @@ return errors;
                   type="select"
                   id="department"
                   name="department"
-                  value={this.state.department}
                   onBlur={this.handleBlur('department')}
                   onChange={this.handleInputChange}>
-                  <option>Sales</option>
-                  <option>HR</option>
-                  <option>Marketing</option>
-                  <option>IT</option>
-                  <option>Finance</option>
+                    <option value="Dept01">Sale</option>
+                    <option value="Dept02">HR</option>
+                    <option value="Dept03">Marketing</option>
+                    <option value="Dept04">IT</option>
+                    <option value="Dept05">Finance</option>
                 </Input>
               </FormGroup>
               <FormGroup>

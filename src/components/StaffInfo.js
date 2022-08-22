@@ -29,7 +29,6 @@ import dateFormat from "dateformat";
     );
         }
     const StaffInfo =(props)=>{
-        console.log(props.staff)
         if(props.staff){
         return (   
             <div className="container">
