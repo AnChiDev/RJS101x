@@ -19,7 +19,6 @@ class Main extends Component {
         departments: DEPARTMENTS
          
     })
-  this.handleSubmit=this.handleSubmit.bind(this);
   }
     handleSubmit = (newStaff) => {
       this.setState({staffs: [...this.state.staffs, newStaff]}); 

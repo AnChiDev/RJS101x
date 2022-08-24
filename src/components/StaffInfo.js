@@ -35,6 +35,7 @@ import dateFormat from "dateformat";
                 <div className="row">
                 <Breadcrumb>
                     <BreadcrumbItem><Link to="/StaffList">Nhân viên</Link></BreadcrumbItem>
+                    <BreadcrumbItem><Link to="/Salary">Bảng lương</Link></BreadcrumbItem>
                     <BreadcrumbItem active>{props.staff.name}</BreadcrumbItem>
                 </Breadcrumb>
                 <div className="col-12">

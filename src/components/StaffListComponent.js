@@ -111,7 +111,6 @@ constructor(props){
                     </div>
                 </div>
             </div>
-
         );
         
     }
