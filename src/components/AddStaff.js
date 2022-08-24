@@ -23,6 +23,7 @@ class AddStaff extends Component {
         name: false,
         doB: false,
         startDate: false,
+        department: false,
       },   
     };
     this.toggleModal = this.toggleModal.bind(this);//mở modal điền thông tin
@@ -59,7 +60,7 @@ handleSubmit(e) {
   e.preventDefault();
         this.setState({
             touched: { 
-                ...this.state.touched, doB: true, name: true, startDate: true, flag: true
+                ...this.state.touched, doB: true, name: true, startDate: true, department: true, flag: true
             }
         });
         const errors = this.validate(this.state.name && this.state.doB && this.state.startDate)
@@ -84,11 +85,12 @@ handleSubmit(e) {
         }
     }
 
-validate(name, doB, startDate) {
+validate(name, doB, startDate, department) {
     const errors = {
         name: '',
         doB: '',
         startDate:'',
+        department: '',
         flag: false,
     };
 
@@ -100,15 +102,17 @@ validate(name, doB, startDate) {
     errors.doB = 'Yêu cầu nhập';
     if (this.state.touched.startDate && startDate==="")
     errors.startDate= 'Yêu cầu nhập';
-  
-    if (name === ''|| doB === ''|| startDate === '') {
+    if (this.state.touched.department && department === '') {
+      errors.department = "Bạn chưa chọn bộ phận";
+  }
+    if (name === ''|| doB === ''|| startDate === ''|| department === '') {
         errors.flag = true;
     }
 return errors;
 }
 
   render() {
-    const errors = this.validate(this.state.name, this.state.doB, this.state.startDate);
+    const errors = this.validate(this.state.name, this.state.doB, this.state.startDate, this.state.department,);
     return (
       <div>
          <Button color="primary"type="submit" onClick ={this.handleAddStaff} > Thêm nhân viên mới </Button>
@@ -159,18 +163,21 @@ return errors;
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="department">Phòng ban</Label>
-                <Input
-                  type="select"
-                  id="department"
-                  name="department"
+                <Input type="select" id="department" name="department"
+                  value={this.state.doB} 
+                  valid={errors.department === ''}
+                  invalid={errors.department !== ''}
                   onBlur={this.handleBlur('department')}
-                  onChange={this.handleInputChange}>
-                    <option value="Dept01">Sale</option>
-                    <option value="Dept02">HR</option>
-                    <option value="Dept03">Marketing</option>
-                    <option value="Dept04">IT</option>
-                    <option value="Dept05">Finance</option>
-                </Input>
+                  onChange={this.handleInputChange} 
+              >
+                  <option value="" disabled>Select Department</option>
+                  <option value="Dept01">Sale</option>
+                  <option value="Dept02">HR</option>
+                  <option value="Dept03">Marketing</option>
+                  <option value="Dept04">IT</option>
+                  <option value="Dept05">Finance</option>
+              </Input>
+              <FormFeedback>{errors.department}</FormFeedback>
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="salaryScale">Hệ số lương</Label>
