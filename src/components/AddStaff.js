@@ -8,15 +8,15 @@ class AddStaff extends Component {
     super(props);
 
     this.state = {
-      id:"",
-      name: "",
-      doB: "",
-      salaryScale: "",
-      startDate: "",
-      department: "",
-      overTime: "",
-      annualLeave: "",
-      salary: "",
+      id: '',
+      name:  '',
+      doB:  '',
+      salaryScale: '',
+      startDate: '',
+      department:'',
+      overTime: '',
+      annualLeave:  '',
+      salary: '',
       image: '/assets/images/alberto.png',
       isModalOpen: false,
       touched:{
@@ -60,10 +60,10 @@ handleSubmit(e) {
   e.preventDefault();
         this.setState({
             touched: { 
-                ...this.state.touched, doB: true, name: true, startDate: true, department: true, flag: true
+                ...this.state.touched, doB: true, name: true, startDate: true, department: true
             }
         });
-        const errors = this.validate(this.state.name && this.state.doB && this.state.startDate)
+        const errors = this.validate(this.state.name && this.state.doB && this.state.startDate && this.state.department)
             if (errors.flag === true) {
                 return
             } else {
@@ -102,9 +102,10 @@ validate(name, doB, startDate, department) {
     errors.doB = 'Yêu cầu nhập';
     if (this.state.touched.startDate && startDate==="")
     errors.startDate= 'Yêu cầu nhập';
-    if (this.state.touched.department && department === "") {
+    if ( this.state.touched.startDate &&department === "") {
       errors.department = "Bạn chưa chọn bộ phận";
   }
+ 
     if (name === ''|| doB === ''|| startDate === ''|| department === '') {
         errors.flag = true;
     }
@@ -169,7 +170,7 @@ return errors;
                   invalid={errors.department !== ''}
                   onBlur={this.handleBlur('department')}
                   onChange={this.handleInputChange} >
-                  <option value="" disabled>Select</option>
+                  <option value= "" >Select</option>
                   <option value="Dept01">Sale</option>
                   <option value="Dept02">HR</option>
                   <option value="Dept03">Marketing</option>
