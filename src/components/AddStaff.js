@@ -90,7 +90,7 @@ validate(name, doB, startDate, department) {
         name: '',
         doB: '',
         startDate:'',
-        department: '',
+        department:'',
         flag: false,
     };
 
@@ -102,7 +102,7 @@ validate(name, doB, startDate, department) {
     errors.doB = 'Yêu cầu nhập';
     if (this.state.touched.startDate && startDate==="")
     errors.startDate= 'Yêu cầu nhập';
-    if (this.state.touched.department && department === '') {
+    if (this.state.touched.department && department === "") {
       errors.department = "Bạn chưa chọn bộ phận";
   }
     if (name === ''|| doB === ''|| startDate === ''|| department === '') {
@@ -164,13 +164,12 @@ return errors;
               <FormGroup>
                 <Label htmlFor="department">Phòng ban</Label>
                 <Input type="select" id="department" name="department"
-                  value={this.state.doB} 
+                  value={this.state.department} 
                   valid={errors.department === ''}
                   invalid={errors.department !== ''}
                   onBlur={this.handleBlur('department')}
-                  onChange={this.handleInputChange} 
-              >
-                  <option value="" disabled>Select Department</option>
+                  onChange={this.handleInputChange} >
+                  <option value="" disabled>Select</option>
                   <option value="Dept01">Sale</option>
                   <option value="Dept02">HR</option>
                   <option value="Dept03">Marketing</option>
